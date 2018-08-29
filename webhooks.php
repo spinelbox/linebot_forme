@@ -7,7 +7,5 @@ require_once ("line-bot-sdk-php-master/line-bot-sdk-tiny/LineBotTiny.php");
 <?php
   $content = file_get_contents("php://input");
   $events = json_decode($content,true);
-
-  echo var_dump($content);
-  echo var_dump($events);
+  echo "again!";
 ?>
