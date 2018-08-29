@@ -5,11 +5,13 @@ require 'line-bot-sdk-php-master/line-bot-sdk-tiny/LINEBotTiny.php';
 ?>
 
 <?php
-  $content = file_get_contents('php://input');
-  $events = json_decode($content,true);
 
-  var_dump($content);
-  echo "<br/>";
-  var_dump($events);
-  echo "again!";
+  $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($_channel_access_token);
+  $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $_channel_secret]);
+
+  $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('Fresh Bakery');
+  $response = $bot->pushMessage($_my_id, $textMessageBuilder);
+
+  echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+
 ?>
